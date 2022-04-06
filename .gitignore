@@ -1,5 +1,0 @@
-.venv
-venv
-*.pyc
-staticfiles
-db.sqlite3
