@@ -1,0 +1,64 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block title %}
+    Update
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row gutters">
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <h6 class="mb-3 text-primary">Fill in the form to change your main settings</h6>
+            <div class="card h-100">
+                <div class="card-body">
+                    <form method="POST" action="{% url 'update success' %}"> 
+                        {% csrf_token %}
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <h6 class="mb-3 text-primary">Personal Details</h6>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="fullName">Profile Photo</label>
+                                <input id="profile_photo" type="file" name="profile_photo" placeholder="Photo" accept="image/*" 
+                                oninvalid="this.setCustomValidity('Please upload your photo in jpg, jpeg or png.')" oninput="this.setCustomValidity('')"required>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tele" class="form-control" name="phone-number" placeholder="Enter phone number" pattern="[8-9]{1}[0-9]{7}" 
+                                oninvalid="this.setCustomValidity('Singapore phone number should start with 8 or 9, and is 8 digit number.')" oninput="this.setCustomValidity('')"required>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="your-password" placeholder="Enter New Password"
+                                pattern="(?=.*[\W_])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                                oninvalid="this.setCustomValidity('Your password must contain at least one number and one uppercase and lowercase letter and one symbol, and at least 8 or more characters')" oninput="this.setCustomValidity('')" required>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-secondary">UPDATE</button>
+                        </div>
+                                                       
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="text-right">
+                                <a href="{% url 'mainpage' %}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
