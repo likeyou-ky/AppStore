@@ -105,7 +105,7 @@ def update_success(request):
             update_user =  "UPDATE users SET display_photo = '%s', phone_number='%s', password='%s' WHERE your_email = '%s'" % (display_photo,phone_number,password,email)
             c = connection.cursor()
             c.execute(update_user)
-    return render(request, 'update success.html')
+    return render(request, 'update_success.html')
 
 def booknow(request):
     return render(request, 'booknow.html')
@@ -117,7 +117,7 @@ def settings(request):
 	return render(request, 'settings.html')
 
 def settings_success(request):
-	return render(request, 'settings success.html')
+	return render(request, 'settings_success.html')
 
 def result(request): # edit here to add sql for search function
     if  request.GET.get('name',''):
@@ -158,5 +158,5 @@ def rate_success(request):
             rating = float(rating)+float(score)
             query3= "UPDATE users SET rating = '%s', count_rate='%s' WHERE your_email = '%s'" % (rating/count_rate,count_rate,being_rated)
             c.execute(query3)
-            return render(request, 'rate success.html')
-    return render(request, 'rate success.html')
+            return render(request, 'rate_success.html')
+    return render(request, 'rate_success.html')
