@@ -65,15 +65,17 @@ def login(request):
             c.execute(email_check)
             emails_exist = c.fetchall() #container
             results_dict = {}
-            if len(display_name)>128:
-                results_dict['name_warning'] = 'Your name cannot be more than 128 characters'
+            if len(display_name)>64:
+                results_dict['name_warning'] = 'Your name cannot be more than 64 characters'
             if len(email) > 128:
                 results_dict['email_verifier'] = ' Your email cannot be more than 128 characters'
             elif emails_exist:
-                results_dict['email_verifier']='There is already an account with email ' + email
+                results_dict['email_verifier'] = 'There is already an account with email ' + email
+            if phone_number[0] != '8' and phone_number[0] != '9':
+                results_dict['phone_verifier'] = 'You have entered an invalid Singapore phone number'
             if len(password) < 6:
                 results_dict['pw_warning'] = 'Your password cannot be less than 6 characters'
-            elif len(password) >64:
+            elif len(password) > 64:
                 results_dict['pw_warning'] = 'Your password cannot be more than 64 characters'
             if results_dict:
                 return render(request,'booknow.html',results_dict)

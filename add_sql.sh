@@ -29,3 +29,6 @@ URI="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 
 # Run the scripts to insert data.
 psql ${URI} -f sql/schema.sql
+psql ${URI} -f sql/users.sql
+psql ${URI} -f sql/interests.sql
+psql ${URI} -f sql/buddies.sql
