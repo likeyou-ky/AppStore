@@ -1,0 +1,92 @@
+{% extends 'base3.html' %}
+{% load static %}
+{% block title %}
+    Results
+{% endblock %}
+{% block content %}
+<html>
+
+	<head>
+		<title> RentBuddy! </title>
+	</head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #000000;
+  text-align: center;
+  padding: 2px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<body style="margin:50;padding:50">
+
+
+<br>
+<a href = 'settings.html'> Click here to become a buddy! </a>
+
+</br>
+
+	<body>
+	
+	{% for rows in records %}
+	<p> Welcome back, {{rows.1}} </p>
+	<p>Here's your account information as of now:</p>
+<table border = "1">
+<tr>
+<td> Email Address </td>
+<td> Name </td>
+<td> Age </td>
+<td> Phone Number </td>
+<td> Vaccination Status </td>
+<td> Rating </td>
+<td> Number of times you have been rated </td> </tr>
+<tr> 
+	<td> {{rows.0}} </td>
+	<td> {{rows.1}} </td>
+	<td> {{rows.2}} </td> 
+	<td> {{rows.3}} </td> 
+	<td> {{rows.4}} </td> 
+	<td> {{rows.5}} </td>
+	<td> {{rows.6}} </td>
+{% endfor %} 
+</tr> <br> </table> <br>
+
+	<p> Check out our buddies :) </p>
+	
+		<p> Search by the buddy's name: [sorted by alphabetical order ascendingly]</p>
+		<form method = "GET" action = "result.html"> <!-- This means after we click submit, will go to another page called result wiht the get mehtod -->
+			<input type = "text" name = "age"/>
+			<input type = "submit" value = "Search Buddy by Age">
+		</form>
+		
+		<p> Search by the buddy's hourly rate: [sorted based on cheapest price]</p>
+		<form method = "GET" action = "result.html"> <!-- This means after we click submit, will go to another page called result wiht the get mehtod -->
+			<input type = "text" name = "hourly-rate"/>
+			<input type = "submit" value = "Search Buddy by Hourly Rate">
+		</form>
+
+		<p> Search by buddy's preference: [sorted by genre alphabetically ascendingly]  </p>
+		<form method = "GET" action = "result.html"> <!-- This means after we click submit, will go to another page called result wiht the get mehtod -->
+			<input type = "text" name = "interests"/>
+			<input type = "submit" value = "Search Buddy by Interests">
+		</form>
+
+		<p> Note, if you want to search multiple interests (not recommended), you need to : </p>
+		<ul>
+  			<li>sort them alphabetically, for example 'Running|Cooking'</li>
+  			<li> You would need to separate it by a | sign (no space) </li> </ul>
+
+<br>
+
+	</body>
+</html>
+
+{% endblock %}

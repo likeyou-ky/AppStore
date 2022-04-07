@@ -1,0 +1,39 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block title %}
+    Update Confirmation 
+{% endblock %}
+
+{% block content %}
+
+
+
+<section class="confirmation-area section-padding-100 bg-img bg-gradient-overlay jarallax clearfix" style="background-image: url({% static 'website/img/bg-img/12_1.jpg' %});">
+    <div class="container">
+      <div class="row">
+        <!-- Section Heading -->
+        <div class="col-12">
+          <div class="section-heading text-center white">
+            <h2>You have Successful become a buddy!</h2>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <!-- Log In Form -->
+          <div class="confirmation-area">
+            <div class="section-heading text-center white">
+              </div>
+              <div class="row">
+                <div class="col-12 text-center">
+                  <a href="{% url 'mainpage' %}" class="btn dento-btn">Return to Dashboard</a>
+                </div>
+                
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

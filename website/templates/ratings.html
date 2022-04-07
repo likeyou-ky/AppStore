@@ -1,0 +1,54 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block title %}
+    Sign Up Now!
+{% endblock %}
+
+{% block content %}
+<!-- Book An Appointment Area Start -->
+  <section class="book-an-appointment-area section-padding-100 bg-img bg-gradient-overlay jarallax clearfix" style="background-image: url({% static 'website/img/bg-img/12_1.jpg' %});">
+    <div class="container">
+      <div class="row">
+        <!-- Section Heading -->
+        <div class="col-12">
+          <div class="section-heading text-center white">
+            <h2>Rate Your Date</h2>
+            <div class="line"></div>
+            <font style="text-align:center" color = 'green'><br></font>
+            <font style="text-align:center" color = 'orange'> {{ rateyourself }} <br></font>
+            <font style="text-align:center" color = 'orange'> {{ ratenotfound }} <br></font>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <!-- Log In Form -->
+          <div class="appointment-form">
+            <form action="{% url 'rate_success' %}" method="POST">
+                {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="email" name="rate-email" class="form-control" placeholder="Enter Email of the other party" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="number" name="rating" class="form-control" placeholder="Enter Rating" min = '1' max = '5' required>
+                  </div>
+                </div>
+                
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn dento-btn">RATE</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Book An Appointment Area End -->
+{% endblock %}
