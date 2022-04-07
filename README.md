@@ -3,6 +3,7 @@
 
 # Features
 * Find people of similar interest
+* Trending activities
 * Give ratings (buddy and client)
 * Settings Page (Update interest, personal particulars)
 
