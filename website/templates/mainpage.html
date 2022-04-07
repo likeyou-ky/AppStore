@@ -1,0 +1,328 @@
+{% extends 'base3.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  <title>{% block title %}Services{% endblock %}</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'website/img/core-img/icon.ico' %}">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+
+</head>
+
+
+            <!-- Navbar Toggler -->
+            <div class="classy-navbar-toggler">
+              <span class="navbarToggler"><span></span><span></span><span></span></span>
+            </div>
+
+            <!-- Menu -->
+            <div class="classy-menu">
+
+              <!-- Close Button -->
+              <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+              </div>
+
+              <!-- Nav End -->
+            </div>
+
+
+ <!-- ***** Breadcrumb Area Start ***** -->
+  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'website/img/bg-img/13-1.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <h2 class="title">Buddies Recommendation</h2>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form action="{% url 'result' %}" class="submition" method="POST" name="searched">
+                {% csrf_token %}
+    <div class="outer-wrapper">
+    <div class="table-wrapper">
+    <table id="emp-table">
+        <thead>
+            
+            <th col-index = 2>&nbsp;&nbsp;&nbsp;Gender
+                <select class="table-filter" onchange="filter_rows()" name="gender">
+                    <option value="">No Preference</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </th>
+            <th col-index = 3>&nbsp;&nbsp;&nbsp;Age
+                <select class="table-filter" onchange="filter_rows()" name="age">
+                    <option value="">No Preference</option>
+                    <option value="18-25">18-25</option>
+                    <option value="26-30">26-30</option>
+                    <option value="31-40">31-40</option>
+                    <option value="41-50">41-50</option>
+                    <option value="51-60">51-60</option>
+                    <option value="> 60">>60</option>
+                </select>
+            </th>
+            <th col-index = 4>
+                  <form action="/action_page.php">
+                  <label for="rate">&nbsp;&nbsp;&nbsp;&nbsp;Hourly Rate</label>
+                  0<input type="range"  name="hourly_rate" min="0" max="500" step="5" value="75">500
+
+                </form>
+               </div>
+</div>
+            </th>
+            <th col-index = 5>&nbsp;&nbsp;&nbsp;&nbsp;Interest/Hobby
+                <input type="search" onchange="filter_rows()" name="interest">
+                </input> 
+            </th>
+            </th>
+
+        </thead>
+    </table>
+
+</div>
+</div>
+<br></br>
+<center><button class="btn btn-primary" type="submit">Search</button></center>
+
+		  </form>
+		</div>
+	</div>
+
+</div>
+
+    <!-- ***** Blog Area Start ***** -->
+  <section class="dento-blog-area section-padding-100-0 clearfix">
+    <div class="container">
+      <div class="row">
+        <!-- Section Heading -->
+        <div class="col-12">
+          <div class="section-heading text-center">
+            <h2>Top Rated Buddies</h2>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+  <section class="dento-services-area mt-50 mb-50">
+    <div class="container">
+      <div class="row">
+
+        <!-- Single Service Area -->
+   <style>
+div.gallery {
+  border: 1px solid #ccc;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+
+<link rel="stylesheet" href="node_modules/react-star-rating/dist/css/react-star-rating.min.css">
+
+<div class="responsive">
+  <div class="gallery">
+    <a target="_self" href="#">
+      <img src="static/website/img/Images/Leonardo Dicaprio.jpg" alt="" width="600" height="400">
+    </a>
+    <div class="desc">
+        <p>Name: </p>
+        <p>Gender: </p>
+        <p>Age: </p>
+        <p>Height: </p>
+        <p>Hourly Rate: </p>
+        <p>Interest/Hobby: </p>
+        <p>Education: </p>
+        <p>Availability: </p>
+        <StarRating name="small-rating" caption="Small!" size={30} totalStars={5} rating={3} />
+    </div>
+  </div>
+</div>
+
+
+<div class="responsive">
+  <div class="gallery">
+      <a target="_self" href="#">
+      <img src="static/website/img/Images/Katrina Kaif.jpg" alt="" width="600" height="400">
+    </a>
+    <div class="desc">
+        <p>Name: </p>
+        <p>Gender: </p>
+        <p>Age: </p>
+        <p>Height: </p>
+        <p>Hourly Rate: </p>
+        <p>Interest/Hobby: </p>
+        <p>Education: </p>
+        <p>Availability: </p> </div>
+  </div>
+</div>
+
+<div class="responsive">
+  <div class="gallery">
+    <a target="_self" href="#">
+      <img src="static/website/img/Images/Jackie Chan.jpg" alt="" width="600" height="400">
+    </a>
+    <div class="desc">
+        <p>Name: </p>
+        <p>Gender: </p>
+        <p>Age: </p>
+        <p>Height: </p>
+        <p>Hourly Rate: </p>
+        <p>Interest/Hobby: </p>
+        <p>Education: </p>
+        <p>Availability: </p>
+    </div>
+  </div>
+</div>
+
+<div class="responsive">
+  <div class="gallery">
+    <a target="_self" href="#">
+      <img src="static/website/img/Images/Madonna.jpg" alt="" width="600" height="400">
+    </a>
+    <div class="desc">
+        <p>Name: </p>
+        <p>Gender: </p>
+        <p>Age: </p>
+        <p>Height: </p>
+        <p>Hourly Rate: </p>
+        <p>Interest/Hobby: </p>
+        <p>Education: </p>
+        <p>Availability: </p>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div style="padding:6px;">  <!-- ***** Services Area End ***** -->
+
+
+  <!-- ***** Blog Area Start ***** -->
+  <section class="dento-blog-area section-padding-100-0 clearfix">
+    <div class="container">
+      <div class="row">
+        <!-- Section Heading -->
+        <div class="col-12">
+          <div class="section-heading text-center">
+            <h2>Trending Activities</h2>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Single Blog Item -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="single-blog-item mb-100">
+            <a href="#">
+              <img src="./img/bg-img/4.jpg" alt="">
+            </a>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="#" class="post-title">Meeting parents</a>
+              <p>Find someone to pretend to be your boyfriend or girlfriend so your parents won't urge you to marry someone!</p>
+              <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt"></i> 2022</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Blog Item -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="single-blog-item mb-100">
+            <a href="#">
+              <img src="./img/bg-img/5.jpg" alt="">
+            </a>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="#" class="post-title">Coffee Date</a>
+              <p>Want to explore a café but do not want to be alone? Rent a buddy to have coffee date with you!</p>
+              <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt"></i> 2022</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Blog Item -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="single-blog-item mb-100">
+            <a href="#">
+              <img src="./img/bg-img/6.jpg" alt="">
+            </a>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="#" class="post-title">Movie Date</a>
+              <p>Is it too lonely and awkward to watch movie alone? Rent a buddy to have a movie date!</p>
+              <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt"></i> 2022</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ***** Blog Area End ***** -->
+  {% endblock %}

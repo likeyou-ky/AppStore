@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Sign Up Now!
+{% endblock %}
+
+{% block content %}
+<!-- Book An Appointment Area Start -->
+  <section class="book-an-appointment-area section-padding-100 bg-img bg-gradient-overlay jarallax clearfix" style="background-image: url({% static 'website/img/bg-img/12_1.jpg' %});">
+    <div class="container">
+      <div class="row">
+        <!-- Section Heading -->
+        <div class="col-12">
+          <div class="section-heading text-center white">
+            <h2>Sign Up</h2>
+            <div class="line"></div>
+            <p style="color:rgb(255, 255, 255);font-size:18px;">Take note that once you sign up, you will only be able to change your phone number, password and profile photo.</p>
+            <font style="text-align:center" color = 'orange'> {{ email_verifier }} <br></font>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <!-- Sign Up Form -->
+          <div class="appointment-form">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="file" name="your-photo" id="your-photo" accept="image/*" class="form-control" placeholder="Profile photo"
+                    oninvalid="this.setCustomValidity('Please upload your photo in jpg, jpeg or png.')" oninput="this.setCustomValidity('')" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="text" name="your-name" class="form-control" placeholder="Your Name" minlength= "8"  
+                    oninvalid="this.setCustomValidity('Your name needs to be at least 8 characters long.')" oninput="this.setCustomValidity('')" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="tele" name="phone-number" class="form-control" placeholder="Your Phone Number" 
+                    pattern="[8-9]{1}[0-9]{7}" 
+                    oninvalid="this.setCustomValidity('Singapore phone number should start with 8 or 9, and is 8 digit number.')" oninput="this.setCustomValidity('')" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="email" name="your-email" class="form-control" placeholder="Your Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                    oninvalid="this.setCustomValidity('Your email needs to be in this format: NAME@DOMAIN.SUFFIX.')" oninput="this.setCustomValidity('')" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="number" name="your-age" class="form-control" placeholder="Your Age" min = '18'
+                    oninvalid="this.setCustomValidity('You are too young to be on our website.')" oninput="this.setCustomValidity('')" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <select name="your-vaccination" class="form-control">
+                      <option value="Vaccination Status">Vaccination Status</option>
+                      <option value="Fully Vaccinated">Fully Vaccinated</option>
+                      <option value="Not Vaccinated">Not Vaccinated</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <select name="your-gender" class="form-control">
+                      <option value="Choose Your Gender">Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-30">
+                    <input type="password" name="your-password" class="form-control" placeholder="Set Password" 
+                    pattern="(?=.*[\W_])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                    oninvalid="this.setCustomValidity('Your password must contain at least one number and one uppercase and lowercase letter and one symbol, and at least 8 or more characters')" oninput="this.setCustomValidity('')" required>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn dento-btn">SIGN UP</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Book An Signup Area End -->
+{% endblock %}
