@@ -45,7 +45,7 @@ def mainpage(request):
     c.execute(query)
     results = c.fetchall()
     result_dict = {'records': results}
-    return render(request, 'mainpage.html', result_dict)
+    return render(request, 'mainpage2.html', result_dict)
 
 def login(request):
     signup = {}#####

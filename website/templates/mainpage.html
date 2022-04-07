@@ -55,48 +55,85 @@
 <div class="row">
 	<div class="col">
 		<div class="card card-body">
-			<form action="{% url 'result' %}" class="submition" method="POST" name="searched">
+            <form action="{% url 'result' %}" class="submition" method="POST" name="searched">
                 {% csrf_token %}
-    <div class="outer-wrapper">
-    <div class="table-wrapper">
-    <table id="emp-table">
-        <thead>
-            
-            <th col-index = 2>&nbsp;&nbsp;&nbsp;Gender
-                <select class="table-filter" onchange="filter_rows()" name="gender">
-                    <option value="">No Preference</option>
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                </select>
-            </th>
-            <th col-index = 3>&nbsp;&nbsp;&nbsp;Age
-                <select class="table-filter" onchange="filter_rows()" name="age">
-                    <option value="">No Preference</option>
-                    <option value="18-25">18-25</option>
-                    <option value="26-30">26-30</option>
-                    <option value="31-40">31-40</option>
-                    <option value="41-50">41-50</option>
-                    <option value="51-60">51-60</option>
-                    <option value="> 60">>60</option>
-                </select>
-            </th>
-            <th col-index = 4>
-                  <form action="/action_page.php">
-                  <label for="rate">&nbsp;&nbsp;&nbsp;&nbsp;Hourly Rate</label>
-                  0<input type="range"  name="hourly_rate" min="0" max="500" step="5" value="75">500
+                <div class="outer-wrapper">
+                    <div class="table-wrapper">
+                        <table id="emp-table">
+                            <thead>
 
-                </form>
-               </div>
+                            <th col-index=2>
+                                &nbsp;&nbsp;&nbsp;Gender
+                                <select class="table-filter" onchange="filter_rows()" name="gender">
+                                    <option value="">No Preference</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                </select>
+                            </th>
+                            <th col-index=3>
+                                &nbsp;&nbsp;&nbsp;Age
+                                <select class="table-filter" onchange="filter_rows()" name="age">
+                                    <option value="">No Preference</option>
+                                    <option value="18-25">18-25</option>
+                                    <option value="26-30">26-30</option>
+                                    <option value="31-40">31-40</option>
+                                    <option value="41-50">41-50</option>
+                                    <option value="51-60">51-60</option>
+                                    <option value="> 60">>60</option>
+                                </select>
+                            </th>
+                            <th col-index=4>
+                                &nbsp;&nbsp;&nbsp;&nbsp;Min Hourly Rate
+                                <input type="search" onchange="filter_rows()" name="minrate">
+                                </input>
+                            </th>
+
 </div>
-            </th>
-            <th col-index = 5>&nbsp;&nbsp;&nbsp;&nbsp;Interest/Hobby
-                <input type="search" onchange="filter_rows()" name="interest">
-                </input> 
-            </th>
-            </th>
+                </div>
+                </th>
+                <th col-index=5>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Max Hourly Rate
+                    <input type="search" onchange="filter_rows()" name="maxrate">
+                    </input>
+                </th>
+                </th>
+                </th>
+                <th col-index=6>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Interest/Hobby
+                    <select class="table-filter" onchange="filter_rows()" name="gender">
+                        <option value="">No Preference</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Dining out/ trying new restaurants">Dining out/ trying new restaurants</option>
+                        <option value="Playing video games">Playing video games</option>
+                        <option value="Going to the cinema/ theatre">Goint to the cinema/ theatre</option>
+                        <option value="Indoor sports">Indoor sports</option>
+                        <option value="Reading/ writing">Reading/ writing</option>
+                        <option value="Watching sports">Watching sports</option>
+                        <option value="Arts/ crafts">Arts/ crafts</option>
+                        <option value="Visiting museums">Visiting museums</option>
+                        <option value="Family Time">Family Time</option>
+                        <option value="Fishing">Fishing</option>
+                        <option value="Gardening">Gardening</option>
+                        <option value="Music">Music</option>
+                        <option value="Hunting">Hunting</option>
+                        <option value="Traveling">Traveling</option>
+                        <option value="Religious Activities">Religious Activities</option>
+                        <option value="Playing Cards">Playing Cards</option>
+                        <option value="Outdoor Activities/ hiking/ Camping">Outdoor Activities/ hiking/ Camping</option>
+                        <option value="Cooking / Baking">Cooking / Baking</option>
+                        <option value="Water Activities/ Water Sports">Water Activities/ Water Sports</option>
+                        <option value="Animal Care">Animal Care</option>
+                        <option value="Dance">Dance</option>
+                        <option value="Billiards/ Cards/ Board Games">Billiards/ Cards/ Board Games</option>
+                        <option value="Volunteer Work">Volunteer Work</option>
+                        <option value="Bouldering/ Skating/ Rock Climbing">Bouldering/ Skating/ Rock Climbing</option>
+                        <option value="Cultural Activities">Cultural Activities</option>
+                    </select>
+                </th>
+                </th>
 
-        </thead>
-    </table>
+                </thead>
+                </table>
 
 </div>
 </div>
@@ -182,7 +219,7 @@ div.desc {
 <div class="responsive">
   <div class="gallery">
     <a target="_self" href="#">
-      <img src="static/website/img/Images/Leonardo Dicaprio.jpg" alt="" width="600" height="400">
+      <img src="static/website/img/buddy_img/Lynn.png" alt="" width="600" height="400">
     </a>
     <div class="desc">
         <p>Name: </p>
