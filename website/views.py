@@ -223,16 +223,17 @@ def result(request): # edit here to add sql for search function
         if gender != '' and interest != '':
             c.execute('''
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
-            b.height, b.rate_per_hour, b.interest_1, b.education, 
+            b.height, b.rate_per_hour, i.interest, b.education, 
             u.vaccination_status, u.phone_number, u.rating
             FROM users u, buddies b, interest i
             WHERE u.your_email = b.your_email
             AND u.gender = %s
             AND u.age >= %s AND u.age <= %s 
             AND b.rate_per_hour >= %s AND b.rate_per_hour <= %s
-            AND (b.interest_1 = %s OR b.interest_2 = %s OR b.interest_3 = %s OR b.interest_4 = %s OR b.interest_5 = %s)
+            AND ((b.interest_1 = %s OR b.interest_2 = %s OR b.interest_3 = %s OR b.interest_4 = %s OR b.interest_5 = %s)
+            AND i.interest = %s)
             ORDER BY u.rating DESC;
-            ''',[gender, min_age, max_age, min_rate, max_rate, interest, interest, interest, interest, interest])
+            ''',[gender, min_age, max_age, min_rate, max_rate, interest, interest, interest, interest, interest, interest])
             results = c.fetchall()
         elif gender != '' and interest == '':
             c.execute('''
@@ -256,9 +257,10 @@ def result(request): # edit here to add sql for search function
             WHERE u.your_email = b.your_email
             AND u.age >= %s AND u.age <= %s 
             AND b.rate_per_hour >= %s AND b.rate_per_hour <= %s
-            AND (b.interest_1 = %s OR b.interest_2 = %s OR b.interest_3 = %s OR b.interest_4 = %s OR b.interest_5 = %s)
+            AND ((b.interest_1 = %s OR b.interest_2 = %s OR b.interest_3 = %s OR b.interest_4 = %s OR b.interest_5 = %s)
+            AND i.interest = %s)
             ORDER BY u.rating DESC;
-            ''',[min_age, max_age, min_rate, max_rate, interest, interest, interest, interest, interest])
+            ''',[min_age, max_age, min_rate, max_rate, interest, interest, interest, interest, interest, interest])
             results = c.fetchall()
         else:
             c.execute('''
