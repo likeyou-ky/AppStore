@@ -123,11 +123,11 @@ def settings_success(request):
 
 def result(request): # edit here to add sql for search function
     if request.method == "GET":
-        gender = request.GET.get('gender')
-        age_range = request.GET.get('age_range')
-        min_rate = request.GET.get('min_rate')
-        max_rate = request.GET.get('max_rate')
-        interest = request.GET.get('interest')
+        gender = request.GET.get('gender', '')
+        age_range = request.GET.get('age_range', '')
+        min_rate = request.GET.get('min_rate', '')
+        max_rate = request.GET.get('max_rate', '')
+        interest = request.GET.get('interest', '')
         min_age = 18
         max_age = 130
         
