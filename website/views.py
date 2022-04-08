@@ -188,10 +188,10 @@ def result(request): # edit here to add sql for search function
             u.vaccination_status, u.phone_number, u.rating
             FROM users u, buddies b
             WHERE u.your_email = b.your_email
-            AND u.age >= %s AND u.age <= %s 
-            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s
+            AND u.age >= {0} AND u.age <= {1} 
+            AND b.rate_per_hour <= {2} AND b.rate_per_hour >= {3}
             ORDER BY u.rating DESC;
-            ''',[min_age, max_age, min_rate, max_rate])
+            '''.format(str(min_age), str(max_age), str(min_rate), str(max_rate)))
             results = c.fetchall()
         result_dict = {'records': results}
     return render(request, 'result.html', result_dict)
