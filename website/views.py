@@ -122,7 +122,7 @@ def settings_success(request):
 	return render(request, 'settings_success.html')
 
 def result(request): # edit here to add sql for search function
-    if request.method == "POST":
+    if request.method == "GET":
         gender = request.GET.get('gender', '1')
         age_range = request.GET.get('age_range', '1')
         min_rate = request.GET.get('min_rate')
@@ -193,7 +193,7 @@ def result(request): # edit here to add sql for search function
             ORDER BY u.rating DESC;
             ''',[min_age, max_age, min_rate, max_rate])
             results = c.fetchall()
-    c.execute('''
+        c.execute('''
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
@@ -201,8 +201,8 @@ def result(request): # edit here to add sql for search function
             WHERE u.your_email = b.your_email
             ORDER BY u.rating DESC;
             ''')
-    results = c.fetchall()
-    result_dict = {'records': results}
+        results = c.fetchall()
+        result_dict = {'records': results}
     return render(request, 'result.html', result_dict)
 
 def ratings(request):
