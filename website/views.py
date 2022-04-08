@@ -45,7 +45,7 @@ def mainpage(request):
     c.execute(query)
     results = c.fetchall()
     result_dict = {'records': results}
-    return render(request, 'mainpage2.html', result_dict)
+    return render(request, 'mainpage.html', result_dict)
 
 def login(request):
     signup = {}#####
@@ -122,13 +122,77 @@ def settings_success(request):
 	return render(request, 'settings_success.html')
 
 def result(request): # edit here to add sql for search function
-    if  request.GET.get('name',''):
-        search_string = request.GET.get('name','')
-    elif request.GET.get('price',''):
-        search_string = request.GET.get('price','')
-    elif request.GET.get('genre',''):
-        search_string = request.GET.get('genre','')
-    return render(request, 'result.html',{})
+    if request.method == "POST":
+        gender = request.POST['gender']
+        age_range = request.POST['age_range']
+        min_rate = request.POST['min_rate']
+        max_rate = request.POST['max_rate']
+        interest = request.POST['interest']
+        min_age = 18
+        max_age = 130
+        
+        if min_rate == '':
+            min_rate = 0
+        if max_rate == '':
+            max_rate = 1000000
+        if age_range != '':
+            min_age = int(age_range[:2])
+            if min_age != 60:
+                max_age = int(age_range[-2:])
+        
+        c = connection.cursor()
+        if gender != '' and interest != '':
+            c.execute('''
+            SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            b.height, b.rate_per_hour, b.interest_1, b.education, 
+            u.vaccination_status, u.phone_number, u.rating
+            FROM users u, buddies b
+            WHERE u.your_email = b.your_email
+            AND u.gender = %s
+            AND u.age >= %s AND u.age <= %s 
+            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s
+            AND (b.interest_1 = %s OR b.interest_2 = %s OR b.interest_3 = %s OR b.interest_4 = %s OR b.interest_5 = %s
+            ORDER BY u.rating DESC);
+            ''',[gender, min_age, max_age, min_rate, max_rate, interest, interest, interest, interest, interest])
+            results = c.fetchall()
+        elif gender != '' and interest == '':
+            c.execute('''
+            SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            b.height, b.rate_per_hour, b.interest_1, b.education, 
+            u.vaccination_status, u.phone_number, u.rating
+            FROM users u, buddies b
+            WHERE u.your_email = b.your_email
+            AND u.gender = %s
+            AND u.age >= %s AND u.age <= %s 
+            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s;
+            ''',[gender, min_age, max_age, min_rate, max_rate])
+            results = c.fetchall()
+        elif gender == '' and interest != '':
+            c.execute('''
+            SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            b.height, b.rate_per_hour, b.interest_1, b.education, 
+            u.vaccination_status, u.phone_number, u.rating
+            FROM users u, buddies b
+            WHERE u.your_email = b.your_email
+            AND u.age >= %s AND u.age <= %s 
+            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s
+            AND (b.interest_1 = %s OR b.interest_2 = %s OR b.interest_3 = %s OR b.interest_4 = %s OR b.interest_5 = %s
+            ORDER BY u.rating DESC);
+            ''',[min_age, max_age, min_rate, max_rate, interest, interest, interest, interest, interest])
+            results = c.fetchall()
+        else:
+            c.execute('''
+            SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            b.height, b.rate_per_hour, b.interest_1, b.education, 
+            u.vaccination_status, u.phone_number, u.rating
+            FROM users u, buddies b
+            WHERE u.your_email = b.your_email
+            AND u.age >= %s AND u.age <= %s 
+            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s;
+            ''',[min_age, max_age, min_rate, max_rate])
+            results = c.fetchall()
+    result_dict = {'records': results}
+    return render(request, 'result.html', result_dict)
 
 def ratings(request):
     return render(request, 'ratings.html')
