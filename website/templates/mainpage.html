@@ -151,6 +151,37 @@
           <div class="section-heading text-center">
             <h2>Top Rated Buddies</h2>
             <div class="line"></div>
+            <table border="1">
+                <tr>
+                    <td> Profile photo </td>
+                    <td> Name </td>
+                    <td> Age </td>
+                    <td> Gender </td>
+                    <td> Height </td>
+                    <td> Rate per hour </td>
+                    <td> Interest </td>
+                    <td> Education </td>
+                    <td> Vaccination Status (Fully / No) </td>
+                    <td> Phone Number </td>
+                    <td> Rating </td>
+                </tr>
+
+                {% for rows in toprated %}
+                <tr>
+                    <td> {{rows.0}} </td>
+                    <td> {{rows.1}} </td>
+                    <td> {{rows.2}} </td>
+                    <td> {{rows.3}} </td>
+                    <td> {{rows.4}} </td>
+                    <td> {{rows.5}} </td>
+                    <td> {{rows.6}} </td>
+                    <td> {{rows.7}} </td>
+                    <td> {{rows.8}} </td>
+                    <td> {{rows.9}} </td>
+                    <td> {{rows.10}} </td>
+                </tr>
+                {% endfor %}
+            </table>
           </div>
         </div>
       </div>
@@ -212,79 +243,6 @@ div.desc {
 
 <link rel="stylesheet" href="node_modules/react-star-rating/dist/css/react-star-rating.min.css">
 
-<div class="responsive">
-  <div class="gallery">
-    <a target="_self" href="#">
-      <img src="static/website/img/buddy_img/Lynn.png" alt="" width="600" height="400">
-    </a>
-    <div class="desc">
-        <p>Name: </p>
-        <p>Gender: </p>
-        <p>Age: </p>
-        <p>Height: </p>
-        <p>Hourly Rate: </p>
-        <p>Interest/Hobby: </p>
-        <p>Education: </p>
-        <p>Availability: </p>
-        <StarRating name="small-rating" caption="Small!" size={30} totalStars={5} rating={3} />
-    </div>
-  </div>
-</div>
-
-
-<div class="responsive">
-  <div class="gallery">
-      <a target="_self" href="#">
-      <img src="static/website/img/Images/Katrina Kaif.jpg" alt="" width="600" height="400">
-    </a>
-    <div class="desc">
-        <p>Name: </p>
-        <p>Gender: </p>
-        <p>Age: </p>
-        <p>Height: </p>
-        <p>Hourly Rate: </p>
-        <p>Interest/Hobby: </p>
-        <p>Education: </p>
-        <p>Availability: </p> </div>
-  </div>
-</div>
-
-<div class="responsive">
-  <div class="gallery">
-    <a target="_self" href="#">
-      <img src="static/website/img/Images/Jackie Chan.jpg" alt="" width="600" height="400">
-    </a>
-    <div class="desc">
-        <p>Name: </p>
-        <p>Gender: </p>
-        <p>Age: </p>
-        <p>Height: </p>
-        <p>Hourly Rate: </p>
-        <p>Interest/Hobby: </p>
-        <p>Education: </p>
-        <p>Availability: </p>
-    </div>
-  </div>
-</div>
-
-<div class="responsive">
-  <div class="gallery">
-    <a target="_self" href="#">
-      <img src="static/website/img/Images/Madonna.jpg" alt="" width="600" height="400">
-    </a>
-    <div class="desc">
-        <p>Name: </p>
-        <p>Gender: </p>
-        <p>Age: </p>
-        <p>Height: </p>
-        <p>Hourly Rate: </p>
-        <p>Interest/Hobby: </p>
-        <p>Education: </p>
-        <p>Availability: </p>
-    </div>
-  </div>
-</div>
-
 <div class="clearfix"></div>
 
 <div style="padding:6px;">  <!-- ***** Services Area End ***** -->
@@ -302,58 +260,19 @@ div.desc {
           </div>
         </div>
       </div>
+      <table border="1">
+          <tr>
+              <td> Activity </td>
+              <td> Top Rating </td>
+          </tr>
 
-      <div class="row">
-        <!-- Single Blog Item -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="single-blog-item mb-100">
-            <a href="#">
-              <img src="./img/bg-img/4.jpg" alt="">
-            </a>
-            <!-- Blog Content -->
-            <div class="blog-content">
-              <a href="#" class="post-title">Family Time</a>
-              <p>Find someone to pretend to be your boyfriend or girlfriend so your parents won't urge you to marry someone!</p>
-              <div class="post-meta">
-                <a href="#"><i class="icon_clock_alt"></i> 2022</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single Blog Item -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="single-blog-item mb-100">
-            <a href="#">
-              <img src="./img/bg-img/5.jpg" alt="">
-            </a>
-            <!-- Blog Content -->
-            <div class="blog-content">
-              <a href="#" class="post-title">Family Time</a>
-              <p>Want to explore a café but do not want to be alone? Rent a buddy to have coffee date with you!</p>
-              <div class="post-meta">
-                <a href="#"><i class="icon_clock_alt"></i> 2022</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Single Blog Item -->
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="single-blog-item mb-100">
-            <a href="#">
-              <img src="./img/bg-img/6.jpg" alt="">
-            </a>
-            <!-- Blog Content -->
-            <div class="blog-content">
-              <a href="#" class="post-title">Movie Date</a>
-              <p>Is it too lonely and awkward to watch movie alone? Rent a buddy to have a movie date!</p>
-              <div class="post-meta">
-                <a href="#"><i class="icon_clock_alt"></i> 2022</a>
-              </div>
-            </div>
-          </div>
-        </div>
+          {% for rows in trendyhobby %}
+          <tr>
+              <td> {{rows.0}} </td>
+              <td> {{rows.1}} </td>
+          </tr>
+          {% endfor %}
+      </table>
       </div>
     </div>
   </section>

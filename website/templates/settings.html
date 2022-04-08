@@ -25,20 +25,20 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="height">Height</label>
-                                <input type="number" class="form-control" name="height" placeholder="Enter height in (cm)" required>
+                                <input type="number" class="form-control" name="height" placeholder="Enter height in (cm)" >
                             </div>
                         </div>
                         
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="education">Education Level</label>
-                                <input type="text" class="form-control" name="education" placeholder="Enter Education Level" required>
+                                <input type="text" class="form-control" name="education" placeholder="Enter Education Level" >
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label for="rate">Rate per hour (in SGD)</label>
-                                <input type="number" min = "0.00" step = "1.00" class="form-control" name="rate" placeholder="Enter rate per hour" required>
+                                <label for="rate_per_hour">Rate per hour (in SGD)</label>
+                                <input type="number" min = "0.00" step = "1.00" class="form-control" name="rate_per_hour" placeholder="Enter rate per hour" >
                             </div>
                         </div>
                     </div>
@@ -48,23 +48,163 @@
                         </div>
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="interest1" placeholder="1st Interest" required>
+                                <select class="table-filter" onchange="filter_rows()" name="interest1">
+                                    <option value="NIL">NIL</option>
+                                    <option value="Shopping">Shopping</option>
+                                    <option value="Dining out/ trying new restaurants">Dining out/ trying new restaurants</option>
+                                    <option value="Playing video games">Playing video games</option>
+                                    <option value="Going to the cinema/ theatre">Goint to the cinema/ theatre</option>
+                                    <option value="Indoor sports">Indoor sports</option>
+                                    <option value="Reading/ writing">Reading/ writing</option>
+                                    <option value="Watching sports">Watching sports</option>
+                                    <option value="Arts/ crafts">Arts/ crafts</option>
+                                    <option value="Visiting museums">Visiting museums</option>
+                                    <option value="Family Time">Family Time</option>
+                                    <option value="Fishing">Fishing</option>
+                                    <option value="Gardening">Gardening</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Hunting">Hunting</option>
+                                    <option value="Traveling">Traveling</option>
+                                    <option value="Religious Activities">Religious Activities</option>
+                                    <option value="Playing Cards">Playing Cards</option>
+                                    <option value="Outdoor Activities/ hiking/ Camping">Outdoor Activities/ hiking/ Camping</option>
+                                    <option value="Cooking / Baking">Cooking / Baking</option>
+                                    <option value="Water Activities/ Water Sports">Water Activities/ Water Sports</option>
+                                    <option value="Animal Care">Animal Care</option>
+                                    <option value="Dance">Dance</option>
+                                    <option value="Billiards/ Cards/ Board Games">Billiards/ Cards/ Board Games</option>
+                                    <option value="Volunteer Work">Volunteer Work</option>
+                                    <option value="Bouldering/ Skating/ Rock Climbing">Bouldering/ Skating/ Rock Climbing</option>
+                                    <option value="Cultural Activities">Cultural Activities</option>
+                                </select>
                             </div>
                         
                             <div class="form-group">
-                                <input type="text" class="form-control" name="interest2" placeholder="2nd Interest" required>
+                                <select class="table-filter" onchange="filter_rows()" name="interest2">
+                                    <option value="NIL">NIL</option>
+                                    <option value="Shopping">Shopping</option>
+                                    <option value="Dining out/ trying new restaurants">Dining out/ trying new restaurants</option>
+                                    <option value="Playing video games">Playing video games</option>
+                                    <option value="Going to the cinema/ theatre">Goint to the cinema/ theatre</option>
+                                    <option value="Indoor sports">Indoor sports</option>
+                                    <option value="Reading/ writing">Reading/ writing</option>
+                                    <option value="Watching sports">Watching sports</option>
+                                    <option value="Arts/ crafts">Arts/ crafts</option>
+                                    <option value="Visiting museums">Visiting museums</option>
+                                    <option value="Family Time">Family Time</option>
+                                    <option value="Fishing">Fishing</option>
+                                    <option value="Gardening">Gardening</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Hunting">Hunting</option>
+                                    <option value="Traveling">Traveling</option>
+                                    <option value="Religious Activities">Religious Activities</option>
+                                    <option value="Playing Cards">Playing Cards</option>
+                                    <option value="Outdoor Activities/ hiking/ Camping">Outdoor Activities/ hiking/ Camping</option>
+                                    <option value="Cooking / Baking">Cooking / Baking</option>
+                                    <option value="Water Activities/ Water Sports">Water Activities/ Water Sports</option>
+                                    <option value="Animal Care">Animal Care</option>
+                                    <option value="Dance">Dance</option>
+                                    <option value="Billiards/ Cards/ Board Games">Billiards/ Cards/ Board Games</option>
+                                    <option value="Volunteer Work">Volunteer Work</option>
+                                    <option value="Bouldering/ Skating/ Rock Climbing">Bouldering/ Skating/ Rock Climbing</option>
+                                    <option value="Cultural Activities">Cultural Activities</option>
+                                </select>
                             </div>
                         
                             <div class="form-group">
-                                <input type="text" class="form-control" name="interest3" placeholder="3rd Interest">
+                                <select class="table-filter" onchange="filter_rows()" name="interest3">
+                                    <option value="NIL">NIL</option>
+                                    <option value="Shopping">Shopping</option>
+                                    <option value="Dining out/ trying new restaurants">Dining out/ trying new restaurants</option>
+                                    <option value="Playing video games">Playing video games</option>
+                                    <option value="Going to the cinema/ theatre">Goint to the cinema/ theatre</option>
+                                    <option value="Indoor sports">Indoor sports</option>
+                                    <option value="Reading/ writing">Reading/ writing</option>
+                                    <option value="Watching sports">Watching sports</option>
+                                    <option value="Arts/ crafts">Arts/ crafts</option>
+                                    <option value="Visiting museums">Visiting museums</option>
+                                    <option value="Family Time">Family Time</option>
+                                    <option value="Fishing">Fishing</option>
+                                    <option value="Gardening">Gardening</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Hunting">Hunting</option>
+                                    <option value="Traveling">Traveling</option>
+                                    <option value="Religious Activities">Religious Activities</option>
+                                    <option value="Playing Cards">Playing Cards</option>
+                                    <option value="Outdoor Activities/ hiking/ Camping">Outdoor Activities/ hiking/ Camping</option>
+                                    <option value="Cooking / Baking">Cooking / Baking</option>
+                                    <option value="Water Activities/ Water Sports">Water Activities/ Water Sports</option>
+                                    <option value="Animal Care">Animal Care</option>
+                                    <option value="Dance">Dance</option>
+                                    <option value="Billiards/ Cards/ Board Games">Billiards/ Cards/ Board Games</option>
+                                    <option value="Volunteer Work">Volunteer Work</option>
+                                    <option value="Bouldering/ Skating/ Rock Climbing">Bouldering/ Skating/ Rock Climbing</option>
+                                    <option value="Cultural Activities">Cultural Activities</option>
+                                </select>
                             </div>    
                         
                             <div class="form-group">
-                                <input type="text" class="form-control" name="interest4" placeholder="4th Interest">
+                                <select class="table-filter" onchange="filter_rows()" name="interest4">
+                                    <option value="NIL">NIL</option>
+                                    <option value="Shopping">Shopping</option>
+                                    <option value="Dining out/ trying new restaurants">Dining out/ trying new restaurants</option>
+                                    <option value="Playing video games">Playing video games</option>
+                                    <option value="Going to the cinema/ theatre">Goint to the cinema/ theatre</option>
+                                    <option value="Indoor sports">Indoor sports</option>
+                                    <option value="Reading/ writing">Reading/ writing</option>
+                                    <option value="Watching sports">Watching sports</option>
+                                    <option value="Arts/ crafts">Arts/ crafts</option>
+                                    <option value="Visiting museums">Visiting museums</option>
+                                    <option value="Family Time">Family Time</option>
+                                    <option value="Fishing">Fishing</option>
+                                    <option value="Gardening">Gardening</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Hunting">Hunting</option>
+                                    <option value="Traveling">Traveling</option>
+                                    <option value="Religious Activities">Religious Activities</option>
+                                    <option value="Playing Cards">Playing Cards</option>
+                                    <option value="Outdoor Activities/ hiking/ Camping">Outdoor Activities/ hiking/ Camping</option>
+                                    <option value="Cooking / Baking">Cooking / Baking</option>
+                                    <option value="Water Activities/ Water Sports">Water Activities/ Water Sports</option>
+                                    <option value="Animal Care">Animal Care</option>
+                                    <option value="Dance">Dance</option>
+                                    <option value="Billiards/ Cards/ Board Games">Billiards/ Cards/ Board Games</option>
+                                    <option value="Volunteer Work">Volunteer Work</option>
+                                    <option value="Bouldering/ Skating/ Rock Climbing">Bouldering/ Skating/ Rock Climbing</option>
+                                    <option value="Cultural Activities">Cultural Activities</option>
+                                </select>
                             </div>
                         
                             <div class="form-group">
-                                <input type="text" class="form-control" name="interest5" placeholder="5th Interest">
+                                <select class="table-filter" onchange="filter_rows()" name="interest5">
+                                    <option value="NIL">NIL</option>
+                                    <option value="Shopping">Shopping</option>
+                                    <option value="Dining out/ trying new restaurants">Dining out/ trying new restaurants</option>
+                                    <option value="Playing video games">Playing video games</option>
+                                    <option value="Going to the cinema/ theatre">Goint to the cinema/ theatre</option>
+                                    <option value="Indoor sports">Indoor sports</option>
+                                    <option value="Reading/ writing">Reading/ writing</option>
+                                    <option value="Watching sports">Watching sports</option>
+                                    <option value="Arts/ crafts">Arts/ crafts</option>
+                                    <option value="Visiting museums">Visiting museums</option>
+                                    <option value="Family Time">Family Time</option>
+                                    <option value="Fishing">Fishing</option>
+                                    <option value="Gardening">Gardening</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Hunting">Hunting</option>
+                                    <option value="Traveling">Traveling</option>
+                                    <option value="Religious Activities">Religious Activities</option>
+                                    <option value="Playing Cards">Playing Cards</option>
+                                    <option value="Outdoor Activities/ hiking/ Camping">Outdoor Activities/ hiking/ Camping</option>
+                                    <option value="Cooking / Baking">Cooking / Baking</option>
+                                    <option value="Water Activities/ Water Sports">Water Activities/ Water Sports</option>
+                                    <option value="Animal Care">Animal Care</option>
+                                    <option value="Dance">Dance</option>
+                                    <option value="Billiards/ Cards/ Board Games">Billiards/ Cards/ Board Games</option>
+                                    <option value="Volunteer Work">Volunteer Work</option>
+                                    <option value="Bouldering/ Skating/ Rock Climbing">Bouldering/ Skating/ Rock Climbing</option>
+                                    <option value="Cultural Activities">Cultural Activities</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-12 text-center">

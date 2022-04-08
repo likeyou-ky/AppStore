@@ -44,7 +44,54 @@ def mainpage(request):
     c = connection.cursor()
     c.execute(query)
     results = c.fetchall()
-    result_dict = {'records': results}
+    c.execute('''SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            b.height, b.rate_per_hour, b.interest_1, b.education, 
+            u.vaccination_status, u.phone_number, u.rating
+            FROM users u, buddies b
+            WHERE u.your_email = b.your_email
+            ORDER BY u.rating DESC LIMIT 5''')
+    toprated = c.fetchall()
+    c.execute('''SELECT i.interest, u.rating
+            FROM users u, buddies b, interests i
+            WHERE u.your_email = b.your_email
+            AND u.rating >= (
+                SELECT AVG(u1.rating)
+                FROM users u1, buddies b1
+                WHERE u1.your_email = b1.your_email)
+            AND i.interest IN (SELECT interest FROM (
+                SELECT b.interest_1 AS interest, COUNT(b.interest_1) FROM buddies b
+                GROUP BY b.interest_1
+                HAVING COUNT(b.interest_1)>=ALL(
+                SELECT COUNT(b1.interest_1) FROM buddies b1
+                GROUP BY b1.interest_1)
+                UNION
+                SELECT b.interest_2 AS interest, COUNT(b.interest_2) FROM buddies b
+                GROUP BY b.interest_2
+                HAVING COUNT(b.interest_2)>=ALL(
+                SELECT COUNT(b1.interest_2) FROM buddies b1
+                GROUP BY b1.interest_2)
+                UNION
+                SELECT b.interest_3 AS interest, COUNT(b.interest_3) FROM buddies b
+                GROUP BY b.interest_3
+                HAVING COUNT(b.interest_3)>=ALL(
+                SELECT COUNT(b1.interest_3) FROM buddies b1
+                GROUP BY b1.interest_3)
+                UNION
+                SELECT b.interest_4 AS interest, COUNT(b.interest_4) FROM buddies b
+                GROUP BY b.interest_4
+                HAVING COUNT(b.interest_4)>=ALL(
+                SELECT COUNT(b1.interest_4) FROM buddies b1
+                GROUP BY b1.interest_4)
+                UNION
+                SELECT b.interest_5 AS interest, COUNT(b.interest_5) FROM buddies b
+                GROUP BY b.interest_5
+                HAVING COUNT(b.interest_5)>=ALL(
+                SELECT COUNT(b1.interest_5) FROM buddies b1
+                GROUP BY b1.interest_5)) AS cte) 
+                ORDER BY u.rating
+                LIMIT 5;''')
+    trendyhobby = c.fetchall()
+    result_dict = {'records': results, 'toprated': toprated, 'trendyhobby': trendyhobby}
     return render(request, 'mainpage.html', result_dict)
 
 def login(request):
@@ -119,6 +166,34 @@ def settings(request):
 	return render(request, 'settings.html')
 
 def settings_success(request):
+    if request.method == "POST":
+        email = request.session['your-email']
+        height = request.POST['height']
+        education = request.POST['education']
+        rate_per_hour = request.POST['rate_per_hour']
+        interest1 = request.POST['interest1']
+        interest2 = request.POST['interest2']
+        interest3 = request.POST['interest3']
+        interest4 = request.POST['interest4']
+        interest5 = request.POST['interest5']
+
+        c = connection.cursor()
+        c.execute("SELECT * FROM users WHERE your_email = '" + email + "';")
+        valid = c.fetchall()
+        if not valid:
+            c.execute("INSERT INTO buddies ({0},{1},{2},{4},{5},{6},{7},{8},{9});".format(email, height, education, rate_per_hour, interest1, interest2, interest3, interest4, interest5))
+        else:
+            update_height = (lambda x: "height = " + str(height) if len(x)!=0 else "")(height)
+            update_education = (lambda x: "education = " + education if len(x)!=0 else "")(education)
+            update_rate = (lambda x : "rate_per_hour = " + str(rate_per_hour) if len(x)!=0 else "")(rate_per_hour)
+            interest1 = (lambda x: "interest_1 = " + interest1 if len(x)!=0 else "")(interest1)
+            interest2 = (lambda x: "interest_2 = " + interest2 if len(x)!=0 else "")(interest2)
+            interest3 = (lambda x: "interest_3 = " + interest3 if len(x)!=0 else "")(interest3)
+            interest4 = (lambda x: "interest_4 = " + interest4 if len(x)!=0 else "")(interest4)
+            interest5 = (lambda x: ("interest_5 = " + interest5) if len(x)!=0 else "")(interest5)
+            parameters = ','.join(update_height, update_education, update_rate, interest1, interest2, interest3, interest4, interest5)
+            c.execute("UPDATE buddies SET"+parameters+" WHERE your_email = "+email+";")
+
 	return render(request, 'settings_success.html')
 
 def result(request): # edit here to add sql for search function
@@ -197,6 +272,7 @@ def result(request): # edit here to add sql for search function
     return render(request, 'result.html', result_dict)
 
 def ratings(request):
+
     return render(request, 'ratings.html')
 
 def rate_success(request):
