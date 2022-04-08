@@ -241,7 +241,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b, interests i
+            FROM users u, buddies b
             WHERE u.your_email = b.your_email
             AND u.gender = %s
             AND u.age >= %s AND u.age <= %s 
@@ -252,7 +252,7 @@ def result(request): # edit here to add sql for search function
         elif gender == '' and interest != '':
             c.execute('''
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
-            b.height, b.rate_per_hour, b.interest_1, b.education, 
+            b.height, b.rate_per_hour, i.interest, b.education, 
             u.vaccination_status, u.phone_number, u.rating
             FROM users u, buddies b, interests i
             WHERE u.your_email = b.your_email
@@ -268,7 +268,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b, interests i
+            FROM users u, buddies b
             WHERE u.your_email = b.your_email
             AND u.age >= {0} AND u.age <= {1} 
             AND b.rate_per_hour >= {2} AND b.rate_per_hour <= {3}
@@ -304,9 +304,8 @@ def rate_success(request):
             c.execute(query)
             count_rate = int(c.fetchall()[0][0])+1
             c.execute(query2)
-            rating = float(c.fetchall()[0][0]) + float(score)
-            p = float(count_rate)
-            rating = (float(rating)*p)+float(score)
+            rating = float(c.fetchall()[0][0])
+            new_rating = rating+score)
             query3= "UPDATE users SET rating = '%s', count_rate='%s' WHERE your_email = '%s'" % (rating/count_rate,count_rate,being_rated)
             c.execute(query3)
             return render(request, 'rate_success.html')
