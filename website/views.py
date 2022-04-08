@@ -305,7 +305,7 @@ def rate_success(request):
             count_rate = int(c.fetchall()[0][0])+1
             c.execute(query2)
             rating = float(c.fetchall()[0][0])
-            new_rating = rating+score)
+            new_rating = rating+score
             query3= "UPDATE users SET rating = '%s', count_rate='%s' WHERE your_email = '%s'" % (rating/count_rate,count_rate,being_rated)
             c.execute(query3)
             return render(request, 'rate_success.html')
