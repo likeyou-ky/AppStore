@@ -150,7 +150,7 @@ def result(request): # edit here to add sql for search function
             WHERE u.your_email = b.your_email
             AND u.gender = %s
             AND u.age >= %s AND u.age <= %s 
-            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s
+            AND b.rate_per_hour >= %s AND b.rate_per_hour <= %s
             AND (b.interest_1 = %s OR b.interest_2 = %s OR b.interest_3 = %s OR b.interest_4 = %s OR b.interest_5 = %s)
             ORDER BY u.rating DESC;
             ''',[gender, min_age, max_age, min_rate, max_rate, interest, interest, interest, interest, interest])
@@ -164,7 +164,7 @@ def result(request): # edit here to add sql for search function
             WHERE u.your_email = b.your_email
             AND u.gender = %s
             AND u.age >= %s AND u.age <= %s 
-            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s
+            AND b.rate_per_hour >= %s AND b.rate_per_hour <= %s
             ORDER BY u.rating DESC;
             ''',[gender, min_age, max_age, min_rate, max_rate])
             results = c.fetchall()
@@ -176,7 +176,7 @@ def result(request): # edit here to add sql for search function
             FROM users u, buddies b
             WHERE u.your_email = b.your_email
             AND u.age >= %s AND u.age <= %s 
-            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s
+            AND b.rate_per_hour >= %s AND b.rate_per_hour <= %s
             AND (b.interest_1 = %s OR b.interest_2 = %s OR b.interest_3 = %s OR b.interest_4 = %s OR b.interest_5 = %s)
             ORDER BY u.rating DESC;
             ''',[min_age, max_age, min_rate, max_rate, interest, interest, interest, interest, interest])
@@ -189,7 +189,7 @@ def result(request): # edit here to add sql for search function
             FROM users u, buddies b
             WHERE u.your_email = b.your_email
             AND u.age >= {0} AND u.age <= {1} 
-            AND b.rate_per_hour <= {2} AND b.rate_per_hour >= {3}
+            AND b.rate_per_hour >= {2} AND b.rate_per_hour <= {3}
             ORDER BY u.rating DESC;
             '''.format(str(min_age), str(max_age), str(min_rate), str(max_rate)))
             results = c.fetchall()
