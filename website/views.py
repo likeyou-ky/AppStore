@@ -302,11 +302,12 @@ def rate_success(request):
             query = "SELECT count_rate FROM users WHERE your_email = '" + being_rated + "';"
             query2 = "SELECT rating FROM users WHERE your_email = '" + being_rated + "';"
             c.execute(query)
-            count_rate = int(c.fetchall()[0][0])+1
+            count_rate = int(c.fetchall()[0][0])
+            new_count_rate = count_rate + 1
             c.execute(query2)
             rating = float(c.fetchall()[0][0])
-            new_rating = (rating+float(score))/count_rate
-            query3= "UPDATE users SET rating = '%s', count_rate='%s' WHERE your_email = '%s'" % (new_rating,count_rate,being_rated)
+            new_rating = (rating*count_rate+float(score))/new_count_rate
+            query3= "UPDATE users SET rating = '%s', count_rate='%s' WHERE your_email = '%s'" % (new_rating,new_count_rate,being_rated)
             c.execute(query3)
             return render(request, 'rate_success.html')
     return render(request, 'rate_success.html')
