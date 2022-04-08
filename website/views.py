@@ -192,7 +192,7 @@ def settings_success(request):
             interest4 = (lambda x: "interest_4 = " + interest4 if len(x)!=0 else "")(interest4)
             interest5 = (lambda x: ("interest_5 = " + interest5) if len(x)!=0 else "")(interest5)
             parameters = ','.join([update_height, update_education, update_rate, interest1, interest2, interest3, interest4, interest5])
-            c.execute("UPDATE buddies SET"+parameters+" WHERE your_email = "+email+";")
+            c.execute("UPDATE buddies SET "+parameters+" WHERE your_email = "+email+";")
     return render(request, 'settings_success.html')
 
 def result(request): # edit here to add sql for search function
@@ -220,7 +220,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b
+            FROM users u, buddies b, interest i
             WHERE u.your_email = b.your_email
             AND u.gender = %s
             AND u.age >= %s AND u.age <= %s 
