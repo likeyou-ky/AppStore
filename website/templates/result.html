@@ -33,19 +33,20 @@ tr:nth-child(even) {
 <p>Here's the list buddy that suit your preferences! </p>
 
 <table border = "1">
-<tr> 
-<td> Profile photo </td>
-<td> Name </td>
-<td> Age </td>
-<td> Gender </td>
-<td> Height </td>
-<td> Rate per hour </td>
-<td> Interest </td>
-<td> Education </td>
-<td> Vaccination Status (Fully / No) </td>
-<td> Phone Number </td>
-<td> Rating </td>
-</tr>
+	<tr>
+		<td> Email </td>
+		<td> Profile photo </td>
+		<td> Name </td>
+		<td> Age </td>
+		<td> Gender </td>
+		<td> Height </td>
+		<td> Rate per hour </td>
+		<td> Interest </td>
+		<td> Education </td>
+		<td> Vaccination Status (Fully / No) </td>
+		<td> Phone Number </td>
+		<td> Rating </td>
+	</tr>
 
 {% for rows in records %}
 <tr> 
@@ -59,7 +60,8 @@ tr:nth-child(even) {
   <td> {{rows.7}} </td>
   <td> {{rows.8}} </td>
   <td> {{rows.9}} </td>
-  <td> {{rows.10}} </td>         
+  <td> {{rows.10}} </td> 
+  <td> {{rows.11}} </td>
 </tr>
 {% endfor %}
 </table>
