@@ -1,6 +1,7 @@
 from cgitb import html
 from sre_constants import SUCCESS
 from urllib import request
+from django.db.models.fields import FloatField
 from django.shortcuts import render
 from django.core.mail import send_mail # for mail send we need to import it
 from django.shortcuts import render, redirect
@@ -240,7 +241,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b
+            FROM users u, buddies b, interest i
             WHERE u.your_email = b.your_email
             AND u.gender = %s
             AND u.age >= %s AND u.age <= %s 
@@ -253,7 +254,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b
+            FROM users u, buddies b, interest i
             WHERE u.your_email = b.your_email
             AND u.age >= %s AND u.age <= %s 
             AND b.rate_per_hour >= %s AND b.rate_per_hour <= %s
@@ -267,7 +268,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b
+            FROM users u, buddies b, interest i
             WHERE u.your_email = b.your_email
             AND u.age >= {0} AND u.age <= {1} 
             AND b.rate_per_hour >= {2} AND b.rate_per_hour <= {3}
@@ -301,11 +302,10 @@ def rate_success(request):
             query = "SELECT count_rate FROM users WHERE your_email = '" + being_rated + "';"
             query2 = "SELECT rating FROM users WHERE your_email = '" + being_rated + "';"
             c.execute(query)
-            count_rate = c.fetchall()[0][0]
-            count_rate = float(count_rate)+1
+            count_rate = int(c.fetchall()[0][0])+1
             c.execute(query2)
-            rating = c.fetchall()[0][0]
-            p = float(count_rate)-1
+            rating = float(c.fetchall()[0][0]) + float(score)
+            p = float(count_rate)
             rating = (float(rating)*p)+float(score)
             query3= "UPDATE users SET rating = '%s', count_rate='%s' WHERE your_email = '%s'" % (rating/count_rate,count_rate,being_rated)
             c.execute(query3)
