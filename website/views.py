@@ -226,7 +226,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, i.interest, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b, interest i
+            FROM users u, buddies b, interests i
             WHERE u.your_email = b.your_email
             AND u.gender = %s
             AND u.age >= %s AND u.age <= %s 
@@ -241,7 +241,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b, interest i
+            FROM users u, buddies b, interests i
             WHERE u.your_email = b.your_email
             AND u.gender = %s
             AND u.age >= %s AND u.age <= %s 
@@ -254,7 +254,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b, interest i
+            FROM users u, buddies b, interests i
             WHERE u.your_email = b.your_email
             AND u.age >= %s AND u.age <= %s 
             AND b.rate_per_hour >= %s AND b.rate_per_hour <= %s
@@ -268,7 +268,7 @@ def result(request): # edit here to add sql for search function
             SELECT u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
-            FROM users u, buddies b, interest i
+            FROM users u, buddies b, interests i
             WHERE u.your_email = b.your_email
             AND u.age >= {0} AND u.age <= {1} 
             AND b.rate_per_hour >= {2} AND b.rate_per_hour <= {3}
