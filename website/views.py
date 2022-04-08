@@ -188,8 +188,8 @@ def result(request): # edit here to add sql for search function
             u.vaccination_status, u.phone_number, u.rating
             FROM users u, buddies b
             WHERE u.your_email = b.your_email
-            AND u.age >= %s AND u.age <= %s 
-            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s
+            AND u.age >= %d AND u.age <= %d 
+            AND b.rate_per_hour <= %d AND b.rate_per_hour >= %d
             ORDER BY u.rating DESC;
             ''',[min_age, max_age, min_rate, max_rate])
             results = c.fetchall()
