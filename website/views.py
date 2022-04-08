@@ -181,7 +181,7 @@ def settings_success(request):
         c.execute("SELECT * FROM buddies WHERE your_email = '" + email + "';")
         valid = c.fetchall()
         if not valid:
-            c.execute("INSERT INTO buddies ('{0}',{1},'{2}',{3},{4},'{5}','{6}','{7}','{8}');".format(email, height, education, rate_per_hour, interest1, interest2, interest3, interest4, interest5))
+            c.execute("INSERT INTO buddies VALUES ('{0}',{1},'{2}',{3},{4},'{5}','{6}','{7}','{8}');".format(email, height, education, rate_per_hour, interest1, interest2, interest3, interest4, interest5))
         else:
             update_height = (lambda x: "height = " + str(height) if len(x)!=0 else "")(height)
             update_education = (lambda x: "education = '" + education + "'" if len(x)!=0 else "")(education)
