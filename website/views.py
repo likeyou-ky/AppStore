@@ -223,7 +223,7 @@ def result(request): # edit here to add sql for search function
         c = connection.cursor()
         if gender != '' and interest != '':
             c.execute('''
-            SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            SELECT u.your_email, u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, i.interest, b.education, 
             u.vaccination_status, u.phone_number, u.rating
             FROM users u, buddies b, interests i
@@ -238,7 +238,7 @@ def result(request): # edit here to add sql for search function
             results = c.fetchall()
         elif gender != '' and interest == '':
             c.execute('''
-            SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            SELECT u.your_email, u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
             FROM users u, buddies b
@@ -251,7 +251,7 @@ def result(request): # edit here to add sql for search function
             results = c.fetchall()
         elif gender == '' and interest != '':
             c.execute('''
-            SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            SELECT u.your_email, u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, i.interest, b.education, 
             u.vaccination_status, u.phone_number, u.rating
             FROM users u, buddies b, interests i
@@ -265,7 +265,7 @@ def result(request): # edit here to add sql for search function
             results = c.fetchall()
         else:
             c.execute('''
-            SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            SELECT u.your_email, u.display_photo, u.display_name, u.age, u.gender, 
             b.height, b.rate_per_hour, b.interest_1, b.education, 
             u.vaccination_status, u.phone_number, u.rating
             FROM users u, buddies b
