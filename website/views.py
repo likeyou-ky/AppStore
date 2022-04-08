@@ -178,7 +178,7 @@ def settings_success(request):
         interest5 = request.POST['interest5']
 
         c = connection.cursor()
-        c.execute("SELECT * FROM users WHERE your_email = '" + email + "';")
+        c.execute("SELECT * FROM buddies WHERE your_email = '" + email + "';")
         valid = c.fetchall()
         if not valid:
             c.execute("INSERT INTO buddies ({0},{1},{2},{4},{5},{6},{7},{8},{9});".format(email, height, education, rate_per_hour, interest1, interest2, interest3, interest4, interest5))
