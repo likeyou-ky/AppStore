@@ -191,6 +191,14 @@ def result(request): # edit here to add sql for search function
             AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s;
             ''',[min_age, max_age, min_rate, max_rate])
             results = c.fetchall()
+    c.execute('''
+            SELECT u.display_photo, u.display_name, u.age, u.gender, 
+            b.height, b.rate_per_hour, b.interest_1, b.education, 
+            u.vaccination_status, u.phone_number, u.rating
+            FROM users u, buddies b
+            WHERE u.your_email = b.your_email
+            ''')
+    results = c.fetchall()
     result_dict = {'records': results}
     return render(request, 'result.html', result_dict)
 
