@@ -45,7 +45,7 @@ def mainpage(request):
     c.execute(query)
     results = c.fetchall()
     result_dict = {'records': results}
-    return render(request, 'mainpage.html', result_dict)
+    return render(request, 'mainpage2.html', result_dict)
 
 def login(request):
     signup = {}#####
@@ -164,7 +164,8 @@ def result(request): # edit here to add sql for search function
             WHERE u.your_email = b.your_email
             AND u.gender = %s
             AND u.age >= %s AND u.age <= %s 
-            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s;
+            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s
+            ORDER BY u.rating DESC;
             ''',[gender, min_age, max_age, min_rate, max_rate])
             results = c.fetchall()
         elif gender == '' and interest != '':
@@ -188,7 +189,8 @@ def result(request): # edit here to add sql for search function
             FROM users u, buddies b
             WHERE u.your_email = b.your_email
             AND u.age >= %s AND u.age <= %s 
-            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s;
+            AND b.rate_per_hour <= %s AND b.rate_per_hour >= %s
+            ORDER BY u.rating DESC;
             ''',[min_age, max_age, min_rate, max_rate])
             results = c.fetchall()
     c.execute('''
@@ -197,6 +199,7 @@ def result(request): # edit here to add sql for search function
             u.vaccination_status, u.phone_number, u.rating
             FROM users u, buddies b
             WHERE u.your_email = b.your_email
+            ORDER BY u.rating DESC;
             ''')
     results = c.fetchall()
     result_dict = {'records': results}
